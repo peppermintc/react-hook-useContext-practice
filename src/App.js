@@ -1,21 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
-import Header from "./components/Header";
-import Nav from "./components/Nav";
-import Article from "./components/Article";
+import React, { useState } from 'react';
+import ClassContextComponent from './ClassContextComponent';
+import FunctionContextComponent from './FunctionContextComponent';
 
-function App() {
+export const ThemeContext = React.createContext();
+
+export default function App() {
+  const [darkTheme, setDarkTheme] = useState(true);
+
+  function toggleTheme() {
+    setDarkTheme(prevDarkTheme => !prevDarkTheme);
+  }
+
   return (
-    <div className="App">
-      
-      <Header></Header>
+    <div>
+      <h1>useContext practice</h1>
 
-      <Nav></Nav>
-
-      <Article></Article>
+      <ThemeContext.Provider value={darkTheme}>
+        <button onClick={toggleTheme}>Toggle Theme</button>
+        <FunctionContextComponent />
+        <ClassContextComponent />
+      </ThemeContext.Provider>
 
     </div>
   );
 }
-
-export default App;
