@@ -1,28 +1,28 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext } from 'react';
 
-const ThemeContext = React.createContext();
-const ThemeUpdateContext = React.createContext();
+export const ThemeContext = React.createContext();
+export const UpdateThemeContext = React.createContext();
 
-export function useTheme() {
-  return useContext(ThemeContext);
-}
+// export const useThemeContext = () => {
+//   return useContext(ThemeContext);
+// }
 
-export function useThemeUpdate() {
-  return useContext(ThemeUpdateContext);
-}
+// export const useUpdateThemeContext = () => {
+//   return useContext(UpdateThemeContext);
+// }
 
-export function ThemeProvider({ children }) {
-    const [darkTheme, setDarkTheme] = useState(true);
+export const ThemeProvider = ({ children }) => {
+  const [darkTheme, setDarkTheme] = useState(false);
 
-    const toggleTheme = () => {
-      setDarkTheme(prevDarkTheme => !prevDarkTheme);
-    }
-    
-    return (
-        <ThemeContext.Provider value={darkTheme}>
-          <ThemeUpdateContext.Provider value={toggleTheme}>
-            {children}
-          </ThemeUpdateContext.Provider>
-        </ThemeContext.Provider>
-    )
+  const toggleTheme = () => {
+    setDarkTheme(prevDarkTheme => !prevDarkTheme)
+  }
+
+  return (
+    <ThemeContext.Provider value={darkTheme}>
+      <UpdateThemeContext.Provider value={toggleTheme}>
+        {children}
+      </UpdateThemeContext.Provider>
+    </ThemeContext.Provider>
+  )
 }

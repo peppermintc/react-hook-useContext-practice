@@ -1,17 +1,16 @@
-import React, { useContext } from 'react';
+import React from 'react';
+import {ThemeProvider} from './ThemeContext';
 import FunctionContextComponent from './FunctionContextComponent';
-import { ThemeProvider } from './ThemeContext';
 
 export default function App() {
-  
-
   return (
-    <>
+    <div>
+      <h1>useContext practice</h1>
+
       <ThemeProvider>
-      
         <FunctionContextComponent />
-        {/* <ClassContextComponent /> */}
       </ThemeProvider>
-    </>
-  )
+
+    </div>
+  );
 }
